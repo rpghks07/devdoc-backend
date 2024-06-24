@@ -35,4 +35,4 @@ COPY --from=builder /home/gradle/project/build/libs/backend-0.0.1.jar .
 ENV PROFILE deploy
 
 # 빌드 결과 jar 파일을 실행
-CMD ["java", "-jar", "-Dspring.profiles.active=${PROFILE}", "backend-0.0.1.jar"]
+CMD ["java", "-jar", "backend-0.0.1.jar"]
