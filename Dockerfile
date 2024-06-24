@@ -8,7 +8,7 @@ WORKDIR project
 COPY . .
 
 # DATABASE_URL을 환경 변수로 삽입
-ENV DATABASE_URL=jdbc:mysql://mysql/bungaebowling_db
+ENV DATABASE_URL=jdbc:mysql://mysql/backend_db
 
 # API URL 삽입
 ENV API_SERVER_URL=https://ka02fa9a0d9a2a.user-app.krampoline.com
@@ -29,10 +29,10 @@ RUN chmod +x gradlew
 RUN ./gradlew clean build 
 
 FROM builder AS final
-COPY --from=builder /home/gradle/project/build/libs/server-0.0.1.jar .
+COPY --from=builder /home/gradle/project/build/libs/backend-0.0.1.jar .
 
 # yml 선택
 ENV PROFILE deploy
 
 # 빌드 결과 jar 파일을 실행
-CMD ["java", "-jar", "-Dspring.profiles.active=${PROFILE}", "server-0.0.1.jar"]
+CMD ["java", "-jar", "-Dspring.profiles.active=${PROFILE}", "backend-0.0.1.jar"]
