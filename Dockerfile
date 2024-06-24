@@ -11,7 +11,7 @@ COPY . .
 ENV DATABASE_URL=jdbc:mysql://mysql/backend_db
 
 # API URL 삽입
-ENV API_SERVER_URL=https://ka02fa9a0d9a2a.user-app.krampoline.com
+#ENV API_SERVER_URL=https://ka02fa9a0d9a2a.user-app.krampoline.com
 
 # gradle 빌드 시 proxy 설정을 gradle.properties에 추가
 RUN echo "systemProp.http.proxyHost=krmp-proxy.9rum.cc\nsystemProp.http.proxyPort=3128\nsystemProp.https.proxyHost=krmp-proxy.9rum.cc\nsystemProp.https.proxyPort=3128" > /root/.gradle/gradle.properties
@@ -32,7 +32,7 @@ FROM builder AS final
 COPY --from=builder /home/gradle/project/build/libs/backend-0.0.1.jar .
 
 # yml 선택
-ENV PROFILE deploy
+#ENV PROFILE deploy
 
 # 빌드 결과 jar 파일을 실행
 CMD ["java", "-jar", "backend-0.0.1.jar"]
